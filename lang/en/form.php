@@ -1,0 +1,46 @@
+<?php
+
+    return [
+        "name"      => "Name",
+        "email"      => "Email",
+        "mobile"   => "Mobile Number",
+        "subject"   => "Subject",
+        "message"   => "Message",
+        "submit"    => "Submit",
+
+        "husband"   => "Father/Wife",
+        "village"   => "Village",
+        "word"      => "Word",
+        "postoffice"=> "Postoffice",
+        "address"   => "Address",
+        "documentno"=> "Document no",
+        "businesstype"      => "Business Type",
+        "bazarname"      => "Bazar Name",
+        "nid"      => "NID Number",
+        "nid_no"      => "NID",
+        "submitapplication" => "Submit Application",
+        "holdingno" => "Holding No",
+        "search" => "Search",
+
+        "picture"       => "Picture",
+        "designation"   => "Designation",
+        'tax' => "Tax Amount",
+        'taxyear' => "Start Tax Year",
+        'selectword' => "Select Word",
+        'information' => "Information",
+        'taxcollection' => "Tax Collection Information",
+        'serial' => "SL",
+        'taxyears' => "Tax Year",
+        'paiddate' => "Paid Date",
+        'status' => "Status",
+        'paidtaxyear' => "Paid Tax Year",
+
+        "attachment"    => "Document",
+        "document_type" => "Document Type",
+        "documentno" => "Attachment File Number",
+        "select" => "Select",
+        "birthcertificate" => "Birth Certificate",
+        "passport" => "Passport",
+        "sector" => "Sector",
+
+    ];
