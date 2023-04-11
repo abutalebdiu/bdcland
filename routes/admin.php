@@ -22,9 +22,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=> 'auth'], func
 
     // User Route
     Route::resource('user', App\Http\Controllers\Admin\UserController::class);
-    Route::get('/general/users',[App\Http\Controllers\Admin\UserController::class,'users'])->name('general.users');
-    Route::get('/vendors/users',[App\Http\Controllers\Admin\UserController::class,'vendors'])->name('vendors.users');
-
+    Route::get('/marketers/users',[App\Http\Controllers\Admin\UserController::class,'marketers'])->name('marketers.users');
     Route::resource('role', App\Http\Controllers\Admin\RoleController::class);
     Route::resource('permission', App\Http\Controllers\Admin\PermissionController::class);
     // User Route End
@@ -68,8 +66,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=> 'auth'], func
     Route::get('customer/modal/show',[App\Http\Controllers\Admin\CRM\CustomerController::class,'customermodal'])->name('customer.modal.show');
     Route::post('customercsvupload',[App\Http\Controllers\Admin\CRM\CustomerController::class,'customercsvupload'])->name('customer.upload.csv.file');
     Route::resource('plot', App\Http\Controllers\Admin\CRM\PlotController::class);
-    Route::resource('cusotmerbyuser', App\Http\Controllers\Admin\CRM\CustomerByUserController::class);
+    Route::resource('cusotmerbyusers', App\Http\Controllers\Admin\CRM\CustomerByUserController::class);
 
+    Route::get('customers/assign', [App\Http\Controllers\Admin\CRM\CustomerController::class,'customerassign'])->name('customerassign');
+    Route::post('customers/assign/store', [App\Http\Controllers\Admin\CRM\CustomerController::class,'customerassignstore'])->name('customerassign.store');
+
+    Route::get('/customers/assign/marketer/delete/{id}', [App\Http\Controllers\Admin\CRM\CustomerByUserController::class,'destroy'])->name('customer.assign.destroy');
     // CRM End
 
 

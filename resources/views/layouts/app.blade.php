@@ -12,6 +12,7 @@
 <link href="{{ asset('adminfile') }}/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
 <link href="{{ asset('adminfile') }}/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
 <link href="{{ asset('adminfile') }}/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{{ asset('adminfile') }}/plugins/select2/css/select2.min.css">
 <link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css" />
 
 <!-- Bootstrap CSS -->
@@ -138,12 +139,10 @@
                                 List</a>
                         </li>
 
-                        <li> <a href="{{ route('admin.general.users') }}"><i class="bi bi-circle"></i>General User
+                        <li> <a href="{{ route('admin.marketers.users') }}"><i class="bi bi-circle"></i>Markters
                                 List</a>
                         </li>
-                        <li> <a href="{{ route('admin.vendors.users') }}"><i class="bi bi-circle"></i>Vendor User
-                                List</a>
-                        </li>
+
                     </ul>
                 </li>
                 {{-- @endcan --}}
@@ -163,6 +162,9 @@
                         </li>
                         <li>
                             <a href="{{ route('admin.customer.index') }}"><i class="bi bi-circle"></i>Customer List</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.report.index') }}"><i class="bi bi-circle"></i>Reports List</a>
                         </li>
                     </ul>
                 </li>
@@ -348,6 +350,7 @@
     <script src="{{ asset('adminfile') }}/plugins/datatable/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('adminfile') }}/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
     <script src="{{ asset('adminfile') }}/js/table-datatable.js"></script>
+    <script src="{{ asset('adminfile') }}/plugins/select2/js/select2.min.js"></script>
     <script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote.min.js"
@@ -365,6 +368,13 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+        });
+
+
+        $(function() {
+            "use strict";
+
+            $('.single-select').select2();
         });
     </script>
 

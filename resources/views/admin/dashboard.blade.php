@@ -35,29 +35,11 @@
         <div class="col">
             <div class="card radius-10 bg-success">
                 <div class="card-body">
-                    <a href="{{ route('admin.vendors.users') }}">
+                    <a href="{{ route('admin.marketers.users') }}">
                         <div class="d-flex align-items-center">
                             <div class="">
-                                <p class="mb-1 text-white">Vendor User</p>
-                                <h4 class="mb-0 text-white">{{ $vendorusers }}</h4>
-                            </div>
-                            <div class="ms-auto widget-icon bg-white-1 text-white">
-                                <i class="bi bi-person"></i>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card radius-10 bg-success">
-                <div class="card-body">
-                    <a href="{{ route('admin.general.users') }}">
-                        <div class="d-flex align-items-center">
-                            <div class="">
-                                <p class="mb-1 text-white">General User</p>
-                                <h4 class="mb-0 text-white">{{ $generalusers }}</h4>
+                                <p class="mb-1 text-white">Marketers</p>
+                                <h4 class="mb-0 text-white">{{ $marketers }}</h4>
                             </div>
                             <div class="ms-auto widget-icon bg-white-1 text-white">
                                 <i class="bi bi-person"></i>
@@ -73,11 +55,11 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="">
-                            <p class="mb-1 text-white">Total Order</p>
-                            <h4 class="mb-0 text-white">0 </h4>
+                            <p class="mb-1 text-white">Total Customers</p>
+                            <h4 class="mb-0 text-white"> {{ $customers }} </h4>
                         </div>
                         <div class="ms-auto widget-icon bg-white-1 text-white">
-                            <i class="bi bi-currency-dollar"></i>
+                            <i class="bi bi-people"></i>
                         </div>
                     </div>
                 </div>

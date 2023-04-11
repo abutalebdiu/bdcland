@@ -78,13 +78,11 @@
                                 <select name="usertype" id="usertype" class="form-control">
                                     <option value="">Select Role</option>
                                     <option value="admin">Admin</option>
-                                    <option value="vendor">Vendor</option>
-                                    <option value="user">User</option>
+                                    <option value="marketer">Marketer</option>
                                 </select>
                                 <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
                             </div>
                         </div>
-
                         <div class="row">
                             <label class="col-sm-3 col-form-label"></label>
                             <div class="col-sm-9">

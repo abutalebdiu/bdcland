@@ -41,7 +41,7 @@
                                     <td>{{ Carbon\Carbon::parse($report->visit_date)->format('d M Y') }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Whatsapp Message</th>
+                                    <th>Contact Media</th>
                                     <td>{{ $report->whatsapp }}</td>
                                 </tr>
                                 <tr>
@@ -53,7 +53,7 @@
                                     <td>{{ $report->remarks }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Creator</th>
+                                    <th>Assign Marketer</th>
                                     <td>{{ $report->user ? $report->user->name : '' }}</td>
                                 </tr>
 

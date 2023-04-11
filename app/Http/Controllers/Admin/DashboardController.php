@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 
 class DashboardController extends Controller
 {
@@ -15,9 +16,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $data['adminusers']     = User::where('usertype','admin')->count();
-        $data['vendorusers']    = User::where('usertype','vendor')->count();
-        $data['generalusers']   = User::where('usertype','user')->count();
+        $data['adminusers']   = User::where('usertype','admin')->count();
+        $data['marketers']    = User::where('usertype','marketer')->count();
+        $data['customers']    = Customer::where('status','active')->count();
 
         return view('admin.dashboard',$data);
     }

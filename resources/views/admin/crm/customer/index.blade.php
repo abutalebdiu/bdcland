@@ -48,6 +48,21 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
+                <div class="card-header">
+                    <form action="">
+                        <div class="row">
+                            <div class="col-12 col-md-3">
+                                <input type="date" name="from_date" @if(isset($from_date)) value="{{ $from_date }}" @endif class="form-control">
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <input type="date" name="date_to" @if(isset($date_to)) value="{{ $date_to }}" @endif class="form-control">
+                            </div>
+                            <div class="col-12 col-md-2">
+                                <button type="submit" class="btn btn-primary btn-sm"> <i class="bi bi-search"></i> Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered" style="width:100%">
@@ -57,6 +72,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
+                                    <th>Insert Date</th>
                                     <th>Status</th>
                                     <th>Assign</th>
                                     <th>Action</th>
@@ -69,11 +85,12 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->phone }}</td>
+                                        <td>{{$item->created_at->format('d-m-Y') }} </td>
                                         <td>
                                             @if ($item->status == 'active')
-                                                <button class="btn btn-sm btn-primary">Active</button>
+                                                <button class="btn btn-primary btn-sm">Active</button>
                                             @elseif($item->status == 'inactive')
-                                                <button class="btn btn-sm btn-danger">Inactive</button>
+                                                <button class="btn btn-danger btn-sm">Inactive</button>
                                             @endif
                                         </td>
                                         <td>

@@ -76,15 +76,13 @@
                             <label for="" class="col-sm-3 col-form-label">Role</label>
                             <div class="col-sm-9">
                                 <select name="usertype" id="usertype" class="form-control">
-                                    <option value="">Select User Type</option>
-                                    <option {{ $user->usertype == 'admin' ? 'selected' : '' }} value="admin">Admin</option>
-                                    <option {{ $user->usertype == 'vendor' ? 'selected' : '' }} value="vendor">Vendor</option>
-                                    <option {{ $user->usertype == 'user' ? 'selected' : '' }} value="user">User</option>
+                                    <option value="">Select Role</option>
+                                    <option {{ $user->usertype == "admin" ? 'selected' : '' }} value="admin">Admin</option>
+                                    <option {{ $user->usertype == "marketer" ? 'selected' : '' }} value="marketer">Marketer</option>
                                 </select>
                                 <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
                             </div>
                         </div>
-
                         <div class="row">
                             <label class="col-sm-3 col-form-label"></label>
                             <div class="col-sm-9">

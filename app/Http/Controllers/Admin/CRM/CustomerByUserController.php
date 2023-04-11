@@ -91,8 +91,11 @@ class CustomerByUserController extends Controller
      * @param  \App\Models\CustomerByUser  $customerByUser
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CustomerByUser $customerByUser)
+    public function destroy($id)
     {
-        //
+        CustomerByUser::find($id)->delete();
+
+        Notify::success('Customer Assign Successfully Removed!');
+        return redirect()->back();
     }
 }

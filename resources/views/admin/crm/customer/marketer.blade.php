@@ -1,4 +1,4 @@
-<form action="{{ route('admin.customerbyuser.store') }}" method="POST">
+<form action="{{ route('admin.cusotmerbyusers.store') }}" method="POST">
     @csrf
     <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Customer Base Marketer Distribution</h5>

@@ -21,7 +21,7 @@
                             <div class="row">
                                 <div class="col-12 col-md-2">
                                     <select name="user_id" id="" class="form-control">
-                                        <option value="">Select User</option>
+                                        <option value="">Select Markter</option>
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                                         @endforeach
@@ -44,10 +44,10 @@
                                     </select>
                                 </div>
                                 <div class="col-12 col-md-2">
-                                    <input type="date" name="start_date" class="form-control">
+                                    <input type="date" name="from_date" @if(isset($from_date)) value="{{ $from_date }}" @endif class="form-control">
                                 </div>
                                 <div class="col-12 col-md-2">
-                                    <input type="date" name="end_date" class="form-control">
+                                    <input type="date" name="date_to" @if(isset($date_to)) value="{{ $date_to }}" @endif class="form-control">
                                 </div>
                                 <div class="col-12 col-md-2">
                                     <button type="submit" class="btn btn-primary btn-sm">Search</button>
@@ -63,9 +63,8 @@
                                         <th>#</th>
                                         <th>Customer Name</th>
                                         <th>Job Title</th>
-                                        <th>Company Name</th>
                                         <th>Mobile</th>
-                                        <th>Email</th>
+                                        <th>Marketer</th>
                                         <th>Desired Plot</th>
                                         <th>Visit Status</th>
                                         <th>Visit Date</th>
@@ -78,9 +77,8 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->customer ? $item->customer->name : '' }}</td>
                                             <td>{{ $item->customer ? $item->customer->designation : '' }}</td>
-                                            <td>{{ $item->customer ? $item->customer->companyname : '' }}</td>
                                             <td>{{ $item->customer ? $item->customer->phone : '' }}</td>
-                                            <td>{{ $item->customer ? $item->customer->email : '' }}</td>
+                                            <td>{{ $item->user ? $item->user->name : '' }}</td>
                                             <td>{{ $item->plot ? $item->plot->name : '' }}</td>
                                             <td>
                                                 <span

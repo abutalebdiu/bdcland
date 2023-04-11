@@ -18,9 +18,27 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['customers'] = Customer::paginate(300);
+        $query = Customer::query();
+
+        if($request->from_date && $request->date_to){
+
+            $data['from_date'] = $request->from_date;
+            $data['date_to'] = $request->date_to;
+
+            $from_date  = date_create($request->from_date." 00:00:00");
+            $date_to    = date_create($request->date_to." 23:59:59");
+
+
+            $ds = date_format($from_date, "Y/m/d H:i:s");
+            $de = date_format($date_to, "Y/m/d H:i:s");
+
+            $query = $query->whereBetween('created_at',[$ds,$de]);
+        }
+
+        $data['customers'] = $query->paginate(300);
+
         return view('admin.crm.customer.index',$data);
     }
 

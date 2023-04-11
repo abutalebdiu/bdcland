@@ -30,8 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $data['roles'] = Role::all();
-        return view('admin.users.create', $data);
+        return view('admin.users.create');
     }
 
     /**
@@ -156,17 +155,10 @@ class UserController extends Controller
     }
 
 
-    public function users()
+    public function marketers()
     {
-        $data['users'] = User::where('usertype','user')->get();
+        $data['users'] = User::where('usertype','marketer')->get();
         return view('admin.users.users',$data);
-    }
-
-
-    public function vendors()
-    {
-        $data['users'] = User::where('usertype','vendor')->get();
-        return view('admin.users.vendors',$data);
     }
 
 

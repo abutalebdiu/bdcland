@@ -21,8 +21,19 @@
                         @method('put')
                         <div class="row">
                             <div class="col-12 col-md-6 py-2">
+                                <label class="form-label">Marketer List</label>
+                                <select name="user_id" class="form-control">
+                                    <option value="">Select Marketer</option>
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->id }}"
+                                            {{ $report->user_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger">{{ $errors->first('user_id') }}</span>
+                            </div>
+                            <div class="col-12 col-md-6 py-2">
                                 <label class="form-label">Customer</label>
-                                <select name="customer_id" class="form-control">
+                                <select name="customer_id" class="form-control single-select">
                                     <option value="">Select Customers</option>
                                     @foreach ($customers as $item)
                                         <option value="{{ $item->id }}"
@@ -44,16 +55,12 @@
                                 </select>
                                 <span class="text-danger">{{ $errors->first('plot_id') }}</span>
                             </div>
-
-
                             <div class="col-12 col-md-6 py-2">
                                 <label class="col-form-label">Visit Date</label>
                                 <input type="date" name="visit_date" value="{{ $report->visit_date }}"
                                     class="form-control">
                                 <span class="text-danger">{{ $errors->first('visit_date') }}</span>
                             </div>
-
-
                             <div class="col-12 col-md-6 py-2">
                                 <label class="form-label">Status</label>
                                 <select name="status_id" class="form-control">
@@ -67,15 +74,14 @@
                                 <span class="text-danger">{{ $errors->first('status_id') }}</span>
                             </div>
                             <div class="col-12 py-2">
-                                <label class="form-label">whatsapp Number</label>
-                                <textarea name="whatsapp" value="" class="form-control">{{ $report->whatsapp }}</textarea>
+                                <label class="form-label">Contact Media</label>
+                                <input name="whatsapp" value="{{ $report->whatsapp }}" class="form-control">
                                 <span class="text-danger">{{ $errors->first('whatsapp') }}</span>
                             </div>
                             <div class="col-12 py-2">
                                 <label class="form-label">Remarks</label>
                                 <textarea name="remarks" id="" cols="10" rows="5" class="form-control">{{ $report->remarks }}</textarea>
                             </div>
-
                             <div class="col-12 pt-4 text-center">
                                 <a href="{{ route('admin.report.index') }}" class="btn btn-warning btn-sm px-3">Cancel</a>
                                 <button type="submit" class="btn btn-primary btn-sm px-3">Update Report</button>
