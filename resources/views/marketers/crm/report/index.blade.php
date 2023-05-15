@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.marketerapp')
 @section('title','Report List')
 @section('content')
     <div class="container">
@@ -10,7 +10,7 @@
                         <h6 class="m-0">Report List</h6>
                     </div>
                     <div class="ms-auto">
-                        <a href="{{ route('admin.report.create') }}" type="button" class="btn btn-primary btn-sm"> <i
+                        <a href="{{ route('marketer.report.create') }}" type="button" class="btn btn-primary btn-sm"> <i
                                 class="bi bi-plus-circle"></i> Create Report</a>
                     </div>
                 </div>
@@ -20,18 +20,10 @@
                         <form action="">
                             <div class="row">
                                 <div class="col-12 col-md-2">
-                                    <select name="user_id" id="" class="form-control">
-                                        <option value="">Select Markter</option>
-                                        @foreach ($users as $user)
-                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-12 col-md-2">
                                     <select name="customer_id" id="customer_id" class="form-control">
                                         <option value="">Select Customer</option>
                                         @foreach ($customers as $customer)
-                                            <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                            <option value="{{ $customer->customer_id }}">{{ optional($customer->customer)->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -51,7 +43,6 @@
                                 </div>
                                 <div class="col-12 col-md-2">
                                     <button type="submit" class="btn btn-primary btn-sm">Search</button>
-                                    <button type="submit" name="pdf" class="btn btn-primary btn-sm"><i class="bi bi-download"></i> PDF</button>
                                 </div>
                             </div>
                         </form>
@@ -65,7 +56,6 @@
                                         <th>Customer Name</th>
                                         <th>Job Title</th>
                                         <th>Mobile</th>
-                                        <th>Marketer</th>
                                         <th>Desired Plot</th>
                                         <th>Visit Status</th>
                                         <th>Visit Date</th>
@@ -79,7 +69,6 @@
                                             <td>{{ $item->customer ? $item->customer->name : '' }}</td>
                                             <td>{{ $item->customer ? $item->customer->designation : '' }}</td>
                                             <td>{{ $item->customer ? $item->customer->phone : '' }}</td>
-                                            <td>{{ $item->user ? $item->user->name : '' }}</td>
                                             <td>{{ $item->plot ? $item->plot->name : '' }}</td>
                                             <td>
                                                 <span
@@ -89,11 +78,11 @@
 
                                             <td>
                                                 <div class="table-actions d-flex align-items-center gap-3 fs-6">
-                                                    <a href="{{ route('admin.report.show', $item->id) }}"
+                                                    <a href="{{ route('marketer.report.show', $item->id) }}"
                                                         class="text-primary" data-bs-toggle="tooltip"
                                                         data-bs-placement="bottom" title="Views"><i
                                                             class="bi bi-eye-fill"></i></a>
-                                                    <a href="{{ route('admin.report.edit', $item->id) }}"
+                                                    <a href="{{ route('marketer.report.edit', $item->id) }}"
                                                         class="text-warning" data-bs-toggle="tooltip"
                                                         data-bs-placement="bottom" title="Edit"><i
                                                             class="bi bi-pencil-fill"></i></a>
@@ -101,6 +90,7 @@
                                                         onclick="deleteItem({{ $item->id }})" data-bs-toggle="tooltip"
                                                         data-bs-placement="bottom" title="Delete"><i
                                                             class="bi bi-trash-fill"></i></a>
+
                                                 </div>
                                             </td>
                                         </tr>

@@ -51,10 +51,19 @@
                 <div class="card-header">
                     <form action="">
                         <div class="row">
-                            <div class="col-12 col-md-3">
+                            <div class="col-12 col-md-2">
+                                <input type="text" name="name" @if(isset($name)) value="{{ $name }}" @endif class="form-control" placeholder="Enter Customer Name">
+                            </div>
+                            <div class="col-12 col-md-2">
+                                <input type="text" name="phone" @if(isset($phone)) value="{{ $phone }}" @endif class="form-control" placeholder="Enter Customer Phone Number">
+                            </div>
+                            <div class="col-12 col-md-2">
+                                <input type="text" name="email" @if(isset($email)) value="{{ $email }}" @endif class="form-control" placeholder="Enter Customer Email Address">
+                            </div>
+                            <div class="col-12 col-md-2">
                                 <input type="date" name="from_date" @if(isset($from_date)) value="{{ $from_date }}" @endif class="form-control">
                             </div>
-                            <div class="col-12 col-md-3">
+                            <div class="col-12 col-md-2">
                                 <input type="date" name="date_to" @if(isset($date_to)) value="{{ $date_to }}" @endif class="form-control">
                             </div>
                             <div class="col-12 col-md-2">
@@ -80,9 +89,9 @@
                             </thead>
                             <tbody>
                                 @foreach ($customers as $item)
-                                    <tr>
+                                    <tr @if($item->numbercount($item->phone)>1) style="background-color:red;color:white" @endif>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->name }}  @if($item->numbercount($item->phone)>1) ({{ $item->numbercount($item->phone) }}) @endif </td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->phone }}</td>
                                         <td>{{$item->created_at->format('d-m-Y') }} </td>

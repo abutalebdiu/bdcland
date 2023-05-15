@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Admin\CRM;
+namespace App\Http\Controllers\Marketer;
 
 use App\Models\Plot;
 use App\Models\Report;
 use App\Models\Status;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Models\CustomerByUser;
 use Plusemon\Notify\Facades\Notify;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use PDF;
 
 class ReportController extends Controller
 {
@@ -25,11 +24,7 @@ class ReportController extends Controller
 
         $query = Report::query();
 
-        if($request->user_id)
-        {
-            $data['user_id'] = $request->user_id;
-            $query->where('user_id',$request->user_id);
-        }
+
         if($request->status_id)
         {
             $data['status_id'] = $request->status_id;
@@ -58,29 +53,13 @@ class ReportController extends Controller
             $query = $query->whereBetween('created_at',[$ds,$de]);
         }
 
-        if($request->has('search'))
-        {
-            $data['reports']    =  $query->latest()->get();
-        }
 
-        else if($request->has('pdf'))
-        {
-            $data['reports']    =  $query->get();
-            $pdf = PDF::loadView('admin.crm.report.report', $data)->setPaper('a4', 'landscape');
-            return $pdf->stream('reports.pdf');
-        }
-
-        else{
-            $data['reports']    =  $query->latest()->get();
-        }
-
-
-        $data['customers']  = Customer::get();
-        $data['users']      = User::where('usertype','marketer')->get();
-        $data['plots']      = Plot::get();
+        $data['reports']   =  $query->where('user_id',auth::user()->id)->latest()->get();
+        $data['customers'] = CustomerByUser::where('user_id',Auth::user()->id)->get();
+        $data['plots']     = Plot::get();
         $data['statuses']   = Status::get();
 
-        return view('admin.crm.report.index',$data);
+        return view('marketers.crm.report.index',$data);
     }
 
     /**
@@ -90,11 +69,11 @@ class ReportController extends Controller
      */
     public function create()
     {
-        $data['customers']  = Customer::get();
+        $data['customers'] = CustomerByUser::where('user_id',Auth::user()->id)->get();
         $data['plots']      = Plot::get();
         $data['statues']    = Status::get();
-        $data['users']      = User::where('usertype','marketer')->get();
-        return view('admin.crm.report.create',$data);
+
+        return view('marketers.crm.report.create',$data);
     }
 
     /**
@@ -113,13 +92,14 @@ class ReportController extends Controller
 
             ]);
 
+
             $data = New Report();
             $input = $request->except('_token');
-            // $input['user_id'] = Auth::user()->id;
+            $input['user_id'] = Auth::user()->id;
             $data->fill($input)->save();
 
             Notify::success('Report Create Successfully');
-            return redirect()->route('admin.report.index');
+            return redirect()->route('marketer.report.index');
 
     }
 
@@ -132,7 +112,7 @@ class ReportController extends Controller
     public function show($id)
     {
         $data['report'] = Report::findOrFail($id);
-        return view('admin.crm.report.show',$data);
+        return view('marketers.crm.report.show',$data);
     }
 
     /**
@@ -143,12 +123,12 @@ class ReportController extends Controller
      */
     public function edit($id)
     {
-        $data['report'] = Report::findOrFail($id);
-        $data['customers'] = Customer::get();
-        $data['plots'] = Plot::get();
-        $data['statues'] = Status::get();
-        $data['users']      = User::where('usertype','marketer')->get();
-        return view('admin.crm.report.edit',$data);
+        $data['report']     = Report::findOrFail($id);
+        $data['customers']  = CustomerByUser::where('user_id',Auth::user()->id)->get();
+        $data['plots']      = Plot::get();
+        $data['statues']    = Status::get();
+
+        return view('marketers.crm.report.edit',$data);
     }
 
     /**
@@ -162,23 +142,19 @@ class ReportController extends Controller
     {
 
         $request->validate([
-            'customer_id'=> 'required',
-            'plot_id'=> 'required',
-            'visit_date'=> 'required',
-            'status_id'=> 'required',
-
+            'plot_id'       => 'required',
+            'visit_date'    => 'required',
+            'status_id'     => 'required',
         ]);
 
-        if(Auth::user()){
+        if(Auth::user())
+        {
             $data = Report::findOrFail($id);
             $input = $request->except('_token');
             $data->fill($input)->save();
 
             Notify::success('Report Update Successfully');
-            return redirect()->route('admin.report.index');
-        }else{
-            Notify::success('Customer Create Successfully');
-            return redirect()->route('login.page');
+            return redirect()->route('marketer.report.index');
         }
     }
 

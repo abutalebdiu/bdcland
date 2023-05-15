@@ -68,7 +68,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($user->customerbyuser as $item)
+                            @foreach ($customerbyusers as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ optional($item->customer)->name }}</td>
@@ -102,6 +102,29 @@
                 <h4>Marketer Reports List</h4>
             </div>
             <div class="card-body">
+                <form action="">
+                    <div class="row mb-3 border-bottom pb-2">
+                        <div class="col-12 col-md-2">
+                            <input type="date" name="from_date" @if(isset($from_date)) value="{{ $from_date }}" @endif class="form-control">
+                        </div>
+                        <div class="col-12 col-md-2">
+                            <input type="date" name="date_to" @if(isset($date_to)) value="{{ $date_to }}" @endif class="form-control">
+                        </div>
+
+                        <div class="col-12 col-md-2">
+                            <select name="status_id" id="" class="form-control">
+                                <option value="">Select Status</option>
+                                @foreach ($statuses as $status)
+                                    <option @if(isset($status_id)) {{ $status->id == $status_id ? "selected" : '' }}  @endif value="{{ $status->id }}">{{ $status->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <button type="submit" name="search" class="btn btn-primary btn-sm"> <i class="bi bi-search"></i> Search</button>
+                            <button type="submit" name="pdf" class="btn btn-primary btn-sm"><i class="bi bi-download"></i> PDF</button>
+                        </div>
+                    </div>
+                </form>
                 <div class="table-responsive">
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
@@ -117,7 +140,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($user->reports as $item)
+                            @foreach ($reports as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->customer ? $item->customer->name : '' }}</td>

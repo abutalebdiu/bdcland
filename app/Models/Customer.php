@@ -35,5 +35,9 @@ class Customer extends Model
         return $this->hasOne(CustomerByUser::class,'customer_id');
     }
 
+    public function numbercount($phone)
+    {
+         return Customer::where('phone',$phone)->count();
+    }
 
 }

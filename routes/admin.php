@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=> 'auth'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=> ['auth','admin']], function () {
 
     Route::get('dashboard',[App\Http\Controllers\Admin\DashboardController::class,'index'])->name('dashboard');
 
@@ -63,6 +63,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=> 'auth'], func
     Route::resource('status', App\Http\Controllers\Admin\CRM\StatusController::class);
     Route::resource('report', App\Http\Controllers\Admin\CRM\ReportController::class);
     Route::resource('customer', App\Http\Controllers\Admin\CRM\CustomerController::class);
+
     Route::get('customer/modal/show',[App\Http\Controllers\Admin\CRM\CustomerController::class,'customermodal'])->name('customer.modal.show');
     Route::post('customercsvupload',[App\Http\Controllers\Admin\CRM\CustomerController::class,'customercsvupload'])->name('customer.upload.csv.file');
     Route::resource('plot', App\Http\Controllers\Admin\CRM\PlotController::class);

@@ -62,14 +62,14 @@
 
                             <div class="col-12 col-md-6 py-2">
                                 <label class="col-sm-3 col-form-label">Address</label>
-                                <input type="text" name="address" value="{{ old('address') }}"
+                                <input type="text" name="campain_id" value="{{ old('campain_id') }}"
                                     class="form-control">
-                                <span class="text-danger">{{ $errors->first('address') }}</span>
+                                <span class="text-danger">{{ $errors->first('campain_id') }}</span>
                             </div>
                             <div class="col-12 col-md-6 py-2">
                                 <label class="col-sm-3 col-form-label">Campain ID</label>
-                                <input type="text" name="campain_id" value="{{ old('campain_id') }}" class="form-control">
-                                <span class="text-danger">{{ $errors->first('campain_id') }}</span>
+                                <input type="text" name="address" value="{{ old('address') }}" class="form-control">
+                                <span class="text-danger">{{ $errors->first('address') }}</span>
                             </div>
 
                             <div class="col-12 col-md-6 py-2">

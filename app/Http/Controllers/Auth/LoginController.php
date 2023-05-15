@@ -43,13 +43,9 @@ class LoginController extends Controller
 
         $user = Auth::user();
 
-        if($user->role_id == 1){
+        if($user->usertype          == 'admin'){
             return "/home";
-        }else if($user->role_id == 2){
-            return "/home";
-        }else if($user->role_id == 3){
-            return "/home";
-        }else if($user->role_id == 4){
+        }else if($user->usertype    == 'marketer'){
             return "/marketer/dashboard";
         }else{
             return "/error";

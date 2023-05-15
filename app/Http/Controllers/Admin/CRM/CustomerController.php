@@ -37,7 +37,24 @@ class CustomerController extends Controller
             $query = $query->whereBetween('created_at',[$ds,$de]);
         }
 
-        $data['customers'] = $query->paginate(300);
+        if($request->name)
+        {
+            $data['name'] = $request->name;
+            $query = $query->where('name','like','%'.$request->name.'%');
+        }
+        if($request->phone)
+        {
+            $data['phone'] = $request->phone;
+            $query = $query->where('phone','like','%'.$request->phone.'%');
+        }
+        if($request->email)
+        {
+            $data['email'] = $request->email;
+            $query = $query->where('email','like','%'.$request->email.'%');
+        }
+
+        $data['customers'] = $query->latest()
+                            ->paginate(300);
 
         return view('admin.crm.customer.index',$data);
     }

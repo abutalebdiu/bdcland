@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Report;
+use App\Models\Status;
+use PDF;
 use Illuminate\Http\Request;
+use App\Models\CustomerByUser;
+use Spatie\Permission\Models\Role;
 use Plusemon\Notify\Facades\Notify;
 use App\Http\Controllers\Controller;
-use App\Models\CustomerByUser;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -69,9 +72,56 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$id)
     {
         $data['user'] = User::findOrFail($id);
+
+        $customerquery = CustomerByUser::query();
+
+        $reportquery = Report::query();
+
+
+        if($request->from_date && $request->date_to){
+
+            $data['from_date'] = $request->from_date;
+            $data['date_to'] = $request->date_to;
+
+            $from_date  = date_create($request->from_date." 00:00:00");
+            $date_to    = date_create($request->date_to." 23:59:59");
+
+
+            $ds = date_format($from_date, "Y/m/d H:i:s");
+            $de = date_format($date_to, "Y/m/d H:i:s");
+
+            $reportquery    = $reportquery->whereBetween('created_at',[$ds,$de]);
+            // $customerquery = $customerquery->whereBetween('created_at',[$ds,$de]);
+        }
+
+        if($request->status_id)
+        {
+            $data['status_id'] = $request->status_id;
+            $reportquery = $reportquery->where('status_id',$request->status_id);
+        }
+
+
+        if($request->has('search'))
+        {
+            $data['reports'] = $reportquery->where('user_id',$id)->latest()->get();
+        }
+        elseif($request->has('pdf'))
+        {
+            $data['reports'] = $reportquery->where('user_id',$id)->latest()->get();
+            $pdf = PDF::loadView('admin.users.reportpdf', $data)->setPaper('a4', 'landscape');
+            return $pdf->stream('marketer_report.pdf');
+        }
+        else{
+            $data['reports'] = $reportquery->where('user_id',$id)->latest()->get();
+        }
+
+        $data['customerbyusers'] = $customerquery->where('user_id',$id)->latest()->get();
+
+
+        $data['statuses'] = Status::all();
         return view('admin.users.show', $data);
     }
 

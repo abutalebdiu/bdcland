@@ -52,6 +52,18 @@ class User extends Authenticatable
     ];
 
 
+    public function getRedirectRoute()
+    {
+        return match($this->usertype) {
+            'admin'     => 'admin/dashboard',
+            'marketer'  => 'marketer/dashboard',
+            // ...
+        };
+    }
+
+
+
+
     public function role()
     {
         return $this->belongsTo(Role::class,'role_id');

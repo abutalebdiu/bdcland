@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Auth;
 
-class AdminMiddleware
+class MarketerMiddleware
 {
     /**
      * Handle an incoming request.
@@ -18,12 +18,9 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next)
     {
         if(auth()->check()){
-            if(auth()->user()->usertype=='admin')
+            if(auth()->user()->usertype=='marketer')
             {
                 return $next($request);
-            }
-            else{
-                return back();
             }
         }else{
             return redirect()->route('login');
