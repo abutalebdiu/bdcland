@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Plusemon\Notify\Facades\Notify;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
-use App\Models\TaxYear;
+
 
 class ProjectController extends Controller
 {
@@ -30,8 +30,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $data['projecttypes'] = ProjectType::all(); 
-        $data['taxyears'] = TaxYear::all(); 
+        $data['projecttypess'] = ProjectType::all();
         return view('admin.projects.create',$data);
     }
 
@@ -45,13 +44,17 @@ class ProjectController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'project_type_id' => 'required',
-            'tax_year_id' => 'required',
-            'budget' => 'required',
+            'project_type_id' => 'required'
         ]);
-        $project = Project::create($request->except(['image']));
-        $project->uploadRequestFile('image')->saveInto('image');
- 
+        $project = Project::create($request->except(['image','layout']));
+        if($request->has('image'))
+        {
+            $project->uploadRequestFile('image')->saveInto('image');
+        }
+        if($request->has('layout'))
+        {
+            $project->uploadRequestFile('layout')->saveInto('layout');
+        }
         Notify::success('Project Create Successfully');
         return redirect()->route('admin.project.index');
     }
@@ -75,9 +78,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        $projecttypes = ProjectType::all(); 
-        $taxyears= TaxYear::all(); 
-        return view('admin.projects.edit',compact('project','projecttypes','taxyears'));
+        $projecttypess = ProjectType::all();
+        return view('admin.projects.edit',compact('project','projecttypess'));
     }
 
     /**
@@ -91,17 +93,29 @@ class ProjectController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'project_type_id' => 'required',
-            'tax_year_id' => 'required',
-            'budget' => 'required',
+            'project_type_id' => 'required'
         ]);
 
         if($request->has('image'))
         {
             $project->deleteWithFile('image');
         }
+        if($request->has('layout'))
+        {
+            $project->deleteWithFile('layout');
+        }
+
         $project->update($request->except(['image']));
-        $project->uploadRequestFile('image')->saveInto('image');
+
+        if($request->has('image')){
+            $project->uploadRequestFile('image')->saveInto('image');
+        }
+        if($request->has('layout')){
+            $project->uploadRequestFile('layout')->saveInto('layout');
+        }
+
+
+
 
         Notify::success('Project update Successfully');
         return redirect()->route('admin.project.index');
@@ -115,7 +129,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        $project->deleteWithFile('image');
+
+        // $project->deleteWithFile('image');
+        // $project->deleteWithFile('layout');
         $project->delete();
         Notify::success('Project delete Successfully');
         return redirect()->route('admin.project.index');

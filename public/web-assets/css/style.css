@@ -305,7 +305,7 @@ position: absolute;
 }
 .slick-dots li.slick-active{
     background: var(--sc);
-  
+
 }
 .slider-main{
     position: relative;
@@ -437,7 +437,7 @@ position: absolute;
     border-radius: 18px;
     border: 2px solid #112713;
     transition: .3s;
-    
+
 }
 .see-all:hover{
     background: var(--wc);
@@ -513,7 +513,8 @@ position: absolute;
     margin: 0 auto;
 }
 .message-text p{
-    font-weight: 
+    font-weight: 400;
+    text-align: justify;
 }
 /*MESSAGE SECTION END*/
 
@@ -524,7 +525,7 @@ position: absolute;
     text-align: center;
     border-top: 6px solid #112713;
     height: 100%;
-    
+
 }
 .certificate-box img{
     width: 70%;

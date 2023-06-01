@@ -40,6 +40,8 @@
 @stack('css')
 
 <body>
+
+
     <!--start wrapper-->
     <div class="wrapper">
         <!--start top header-->
@@ -168,6 +170,21 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon"><i class="bi bi-list"></i>
+                        </div>
+                        <div class="menu-title">Project Managements</div>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="{{ route('admin.projecttype.index') }}"><i class="bi bi-circle"></i>Project Type</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.project.index') }}"><i class="bi bi-circle"></i>Project List</a>
+                        </li>
+                    </ul>
+                </li>
 
 
 
@@ -250,6 +267,12 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{{ route('admin.certificate.index') }}">
+                                <i class="bi bi-circle"></i>
+                                Certificate List
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ route('admin.gallery.index') }}">
                                 <i class="bi bi-circle"></i>
                                 Gallery List
@@ -266,13 +289,6 @@
                             <a href="{{ route('admin.contact.index') }}">
                                 <i class="bi bi-circle"></i>
                                 Contact
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="{{ route('admin.projecttype.index') }}">
-                                <i class="bi bi-circle"></i>
-                                Project type
                             </a>
                         </li>
 

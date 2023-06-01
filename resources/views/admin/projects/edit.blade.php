@@ -1,5 +1,5 @@
-@extends('layouts.app', ['title' => 'Edit New Project'])
-
+@extends('layouts.app', ['title' => 'Edit Project'])
+@section('title','Edit Project')
 @section('content')
     <div class="page-breadcrumb d-flex align-items-center mb-2 border-bottom pb-2">
         <div>
@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label for="Title">Project Type</label>
                             <select name="project_type_id" class="form-control">
-                                @foreach ($projecttypes as $item)
+                                @foreach ($projecttypess as $item)
                                     <option value="{{ $item->id }}"
                                         {{ $item->id == $project->project_type_id ? 'selected' : '' }}>{{ $item->name }}
                                     </option>
@@ -37,42 +37,54 @@
                             <span class="text-danger">{{ $errors->first('project_type_id') }}</span>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 py-2">
-                        <div class="form-group">
-                            <label for="Title">Tax Year</label>
-                            <select name="tax_year_id" class="form-control">
-                                @foreach ($taxyears as $item)
-                                    <option value="{{ $item->id }}"
-                                        {{ $item->id ==  $project->tax_year_id ? 'selected' : '' }}>{{ $item->name }}
-                                    </option>
-                                @endforeach
 
-                            </select>
-                            <span class="text-danger">{{ $errors->first('project_type_id') }}</span>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 py-2">
-                        <div class="form-group" class="form-control">
-                            <label for="Title">Description</label>
-                            <input type="text" name="description" value="{{ $project->description }}" class="form-control">
-                            <span class="text-danger">{{ $errors->first('description') }}</span>
-                        </div>
-                    </div>
                     <div class="col-12 col-md-6 py-2">
                         <div class="form-group">
-                            <label for="Title">Image</label>
-                            <input type="file" name="image" class="form-control">
+                            <label for="Title">Image</label> <br>
+                            <img src="{{ $project->urlof('image') }}" alt="" class="w-25"> <br>
+                            <input type="file" name="image" class="form-control" accept=".jpg,.jpeg,.png,.PNG,.gif">
                             <span class="text-danger">{{ $errors->first('image') }}</span>
                         </div>
                     </div>
+
                     <div class="col-12 col-md-6 py-2">
                         <div class="form-group">
-                            <label for="Image">Budget</label>
-                            <input type="text" name="budget" value="{{ $project->budget }}" class="form-control">
-                            <span class="text-danger">{{ $errors->first('budget') }}</span>
+                            <label for="layout">Layout</label> <br>
+                            <img src="{{ $project->urlof('layout') }}" alt="" class="w-25"> <br>
+                            <input type="file" name="layout" class="form-control" accept=".jpg,.jpeg,.png,.PNG,.gif">
+                            <span class="text-danger">{{ $errors->first('layout') }}</span>
                         </div>
                     </div>
 
+                    <div class="col-sm-12 py-2">
+                        <div class="form-group">
+                            <label for="short_description">Short Description</label>
+                            <textarea name="short_description" rows="6" class="form-control summernote">{{ $project->short_description }}</textarea>
+                            <span class="text-danger">{{ $errors->first('short_description') }}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 py-2">
+                        <div class="form-group">
+                            <label for="long_description">Long Description</label>
+                            <textarea name="long_description" rows="6" class="form-control summernote">{{ $project->long_description }}</textarea>
+                            <span class="text-danger">{{ $errors->first('long_description') }}</span>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 py-2">
+                        <div class="form-group">
+                            <label for="Youtube">Youtube</label>
+                            <input type="text" name="youtube" class="form-control" value="{{ $project->youtube}}">
+                            <span class="text-danger">{{ $errors->first('youtube') }}</span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 py-2">
+                        <div class="form-group">
+                            <label for="mapcode">Map Code</label>
+                            <input type="text" name="mapcode" class="form-control" value="{{ $project->mapcode}}">
+                            <span class="text-danger">{{ $errors->first('mapcode') }}</span>
+                        </div>
+                    </div>
 
                     <div class="col-12  mt-3 text-center">
                         <a href="{{ route('admin.project.index') }}" class="btn btn-warning btn-sm px-3">Cancel</a>

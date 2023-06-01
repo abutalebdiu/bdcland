@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BDC</title>
+    <title>@yield('title')  -  {{ $setting->site_name }} </title>
     <link rel="icon" href="{{ $setting->urlOf('favicon') }}" type="image/gif" sizes="16x16">
     <!--    BOOSTRAP-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="{{ asset('web-assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('web-assets/css/responsive.css') }}">
 </head>
-
 <body>
 
 
@@ -38,7 +37,7 @@
                 <div class="d-flex align-items-end">
                     <div class="flex-shrink-1 mobile-head">
                         <div class="main-logo d-xl-block d-flex align-items-center justify-content-between d-block">
-                            <a href="#">
+                            <a href="{{ route('website') }}">
                                 <img src="{{ $setting->urlOf('logo') }}" alt="logo">
                             </a>
                             <span class="mobile-btn d-block d-xl-none" id="mobile-btn">
@@ -56,63 +55,34 @@
                             <ul>
                                 <li><a href="{{ route('website') }}"> HOME </a>
                                 <li class="sub-btn">
-                                    <a href="#"> PROJECTS <i class="bi bi-chevron-down"></i></a>
+                                    <a href="{{ route('projects') }}"> PROJECTS <i class="bi bi-chevron-down"></i></a>
                                     <div class="sub-menu">
                                         <ul>
+                                            @foreach ($projecttypes as $type)
                                             <li class="child-btn">
                                                 <a href="">
-                                                    LAND PROJECT
+                                                    {{ $type->name }}
                                                     <i class="bi bi-chevron-right"></i>
                                                 </a>
                                                 <div class="child-menu">
-                                                    <a href="#">
-                                                        SOUTH TOWN
+                                                    @foreach ($type->subcategories as $subtype)
+                                                    <a href="{{ route('projects') }}?project_type_id={{ $subtype->id }}">
+                                                        {{  $subtype->name }}
                                                     </a>
-                                                    <a href="#">
-                                                        EAST TOWN
-                                                    </a>
-                                                    <a href="#">
-                                                        WEST TOWN
-
-                                                    </a>
-                                                    <a href="#">NORTH TOWN</a>
-                                                    <a href="#">NEW TOWN</a>
-
+                                                    @endforeach
                                                 </div>
                                             </li>
-                                            <li class="child-btn">
-                                                <a href="">
-                                                    APARTMENT
-                                                    <i class="bi bi-chevron-right"></i>
-                                                </a>
-
-                                                <div class="child-menu">
-                                                    <a href="#">
-                                                        SOUTH TOWN
-                                                    </a>
-                                                    <a href="#">
-                                                        EAST TOWN
-                                                    </a>
-                                                    <a href="#">
-                                                        WEST TOWN
-
-                                                    </a>
-                                                    <a href="#">NORTH TOWN</a>
-                                                    <a href="#">NEW TOWN</a>
-
-                                                </div>
-                                            </li>
-
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </li>
 
-                                <li><a href="#">BOOKING</a></li>
+                                <li><a href="{{ route('web.booking') }}">BOOKING</a></li>
                                 <li><a href="#">NEWS & EVENTS</a></li>
                                 <li><a href="#">PAYMENTS</a></li>
-                                <li><a href="#">ABOUT US</a></li>
-                                <li><a href="#">BLOG</a></li>
-                                <li class="menu-phone"><a href="#">01322-910430</a></li>
+                                <li><a href="{{ route('aboutus') }}">ABOUT US</a></li>
+                                <li><a href="{{ route('blogs') }}">BLOG</a></li>
+                                <li class="menu-phone"><a href="#">{{ $setting->phone }}</a></li>
                                 <li class="menu-search"><a href="javascript:void(0)">
                                         <i class="bi bi-search"></i></a>
                                 </li>
@@ -347,25 +317,27 @@
                     </div>
                     <div class="col-12 col-sm-6 col-lg-3 mt-4 mt-sm-0">
                         <div class="footer-head">
-                            <h6 class="bottom-border">CONTACT U</h6>
+                            <h6 class="bottom-border">CONTACT Us</h6>
 
 
                             <div class="footer-location">
                                 <p>
                                     <i class="fa fa-phone" aria-hidden="true"></i>
-                                    +88017-453454
+                                     {{ $setting->phone}}
                                 </p>
+                                @if($setting->altphone)
                                 <p>
                                     <i class="fa fa-whatsapp" aria-hidden="true"></i>
-                                    +88017-453454
+                                    {{ $setting->altphone }}
                                 </p>
+                                @endif
                                 <p>
                                     <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                                    example@gmail.com
+                                    {{ $setting->email}}
                                 </p>
                                 <p>
                                     <i class="bi bi-geo-alt"></i>
-                                    12548 New State , Gazipur City Corporateion Dhaka, Bangladesh
+                                    {{ $setting->address}}
                                 </p>
                             </div>
                         </div>
@@ -393,7 +365,7 @@
                                             <a href="#">Projects</a>
                                         </li>
                                         <li>
-                                            <a href="#">Booking</a>
+                                            <a href="{{ route('web.booking') }}">Booking</a>
                                         </li>
                                     </ul>
                                 </div>

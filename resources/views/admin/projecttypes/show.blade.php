@@ -1,5 +1,5 @@
-@extends('layouts.app', ['title' => 'Show news'])
-
+@extends('layouts.app', ['title' => 'Show Project Type'])
+@section('title','Create New Project Type')
 @section('content')
     <div class="container">
         <!--breadcrumb-->

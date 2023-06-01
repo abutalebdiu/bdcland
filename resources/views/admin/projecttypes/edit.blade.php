@@ -1,5 +1,5 @@
-@extends('layouts.app', ['title' => 'Edit Project Type'])
-
+@extends('layouts.app')
+@section('title','Edit Project Type')
 @section('content')
     <div class="page-breadcrumb d-flex align-items-center mb-2 border-bottom pb-2">
         <div>
@@ -41,8 +41,8 @@
                             </select>
                         </div>
                     </div>
-                   
-                    
+
+
 
                     <div class="col-12  mt-3 text-center">
                         <a href="{{ route('admin.importantlink.index') }}" class="btn btn-warning btn-sm px-3">Cancel</a>

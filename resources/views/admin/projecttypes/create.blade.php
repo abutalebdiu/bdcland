@@ -1,5 +1,5 @@
-@extends('layouts.app', ['title' => 'Create New Project Type'])
-
+@extends('layouts.app')
+@section('title','Create New Project Type')
 @section('content')
     <div class="page-breadcrumb d-flex align-items-center mb-2 border-bottom pb-2">
         <div>
@@ -27,6 +27,18 @@
                         <div class="form-group">
                             <label >Name Bangla *</label>
                             <input type="text" name="name_bn" value="{{ old('name_bn') }}" class="form-control">
+                            <span class="text-danger">{{ $errors->first('name_bn') }}</span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 py-2">
+                        <div class="form-group">
+                            <label >Parent Type</label>
+                            <select name="p_id" id="p_id" class="form-control">
+                                <option value="">Select Type</option>
+                                @foreach ($projecttypes as $type)
+                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                @endforeach
+                            </select>
                             <span class="text-danger">{{ $errors->first('name_bn') }}</span>
                         </div>
                     </div>

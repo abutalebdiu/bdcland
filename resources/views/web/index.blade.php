@@ -57,7 +57,6 @@
     </section>
     <!--    SLIDER SECTION-->
 
-
     <!--    PROJECT SECTION-->
     <section class="project-section py-5">
         <div class="container">
@@ -65,81 +64,23 @@
                 <h3 class="after">PROJECTS</h3>
             </div>
             <div class="row mt-5">
-                <div class="col-12 col-sm-6 col-md-4 pb-4">
-                    <div class="project-box">
-                        <img src="{{ asset('web-assets') }}/images/photos/project-1.png" alt="project">
+                @foreach ($projects as $project)
+                    <div class="col-12 col-sm-6 col-md-4 pb-4">
+                        <div class="project-box">
+                            <img src="{{ $project->urlOf('image') }}" alt="project">
 
-                        <h4>My Project Name</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, harum.
-                        </p>
+                            <h4>{{ $project->title }}</h4>
+                            <p>
+                                {!! $project->short_description !!}
+                            </p>
 
-                        <a href="#">Project Details <i class="bi bi-arrow-right-short"></i></a>
+                            <a href="{{ route('projects.detail',$project->id) }}">Project Details <i class="bi bi-arrow-right-short"></i></a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 pb-4">
-                    <div class="project-box">
-                        <img src="{{ asset('web-assets') }}/images/photos/project-2.png" alt="project">
-
-                        <h4>My Project Name</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, harum.
-                        </p>
-
-                        <a href="#">Project Details <i class="bi bi-arrow-right-short"></i></a>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 pb-4">
-                    <div class="project-box">
-                        <img src="{{ asset('web-assets') }}/images/photos/project-3.png" alt="project">
-
-                        <h4>My Project Name</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, harum.
-                        </p>
-
-                        <a href="#">Project Details <i class="bi bi-arrow-right-short"></i></a>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 pb-4">
-                    <div class="project-box">
-                        <img src="{{ asset('web-assets') }}/images/photos/project-1.png" alt="project">
-
-                        <h4>My Project Name</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, harum.
-                        </p>
-
-                        <a href="#">Project Details <i class="bi bi-arrow-right-short"></i></a>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 pb-4">
-                    <div class="project-box">
-                        <img src="{{ asset('web-assets') }}/images/photos/project-2.png" alt="project">
-
-                        <h4>My Project Name</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, harum.
-                        </p>
-
-                        <a href="#">Project Details <i class="bi bi-arrow-right-short"></i></a>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 pb-4">
-                    <div class="project-box">
-                        <img src="{{ asset('web-assets') }}/images/photos/project-3.png" alt="project">
-
-                        <h4>My Project Name</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, harum.
-                        </p>
-
-                        <a href="#">Project Details <i class="bi bi-arrow-right-short"></i></a>
-                    </div>
-                </div>
+                @endforeach
                 <div class="col-12 pt-4">
                     <div class="text-center">
-                        <a href="#" class="see-all">VISIT ALL</a>
+                        <a href="{{ route('projects')}}" class="see-all">VISIT ALL</a>
                     </div>
                 </div>
             </div>
@@ -160,25 +101,30 @@
                 <div class="row align-items-center">
                     <div class="col-12 col-md-6">
                         <div class="query-form">
-                            <form action="#">
+                            <form action="{{ route('contactstore') }}" method="POST">
+                                @csrf
                                 <div class="py-2">
                                     <label for="">Your Name</label>
-                                    <input type="text" placeholder="john die">
+                                    <input type="text" name="name"  value="{{ old('name') }}" placeholder="john die">
                                 </div>
                                 <div class="py-2">
                                     <label for="">Mobile Number</label>
-                                    <input type="text" placeholder="01*********">
+                                    <input type="text" name="mobile" value="{{ old('mobile') }}" placeholder="01*********">
                                 </div>
                                 <div class="py-2">
                                     <label for="">Email</label>
-                                    <input type="email" placeholder="johndie@gmail.com">
+                                    <input type="email" name="email" value="{{ old('email') }}" placeholder="johndie@gmail.com">
+                                </div>
+                                <div class="py-2">
+                                    <label for="">Subject</label>
+                                    <input type="text" name="subject" value="{{ old('subject') }}" placeholder="Subject">
                                 </div>
                                 <div class="py-2">
                                     <label for="">Quires</label>
-                                    <textarea name="" id="" cols="30" rows="10" placeholder="message"></textarea>
+                                    <textarea name="message" id="message" cols="30" rows="10" placeholder="message">{{ old('message') }}</textarea>
                                 </div>
                                 <div class="mt-4 text-center">
-                                    <button type="submit" class="see-all">SUBMIT</button>
+                                    <button type="submit"  class="see-all">SUBMIT</button>
                                 </div>
                             </form>
                         </div>
@@ -203,60 +149,17 @@
             </div>
 
             <div class="row mt-5">
-                <div class="col-12 col-sm-6 col-md-4 pb-4">
-                    <div class="pro-layout-box">
-                        <h5>Project Name</h5>
-
-                        <div>
-                            <img class="test-popup-link" src="{{ asset('web-assets') }}/images/photos/project-layout.png" alt="image">
+                @foreach ($projects as $project)
+                    <div class="col-12 col-sm-6 col-md-4 pb-4">
+                        <div class="pro-layout-box">
+                            <h5> {{$project->title  }} </h5>
+                            <div>
+                                <img class="test-popup-link" src="{{ $project->urlOf('image') }}" alt="image">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 pb-4">
-                    <div class="pro-layout-box">
-                        <h5>Project Name</h5>
+                @endforeach
 
-                        <div>
-                            <img class="test-popup-link"  src="{{ asset('web-assets') }}/images/photos/project-layout.png" alt="image">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 pb-4">
-                    <div class="pro-layout-box">
-                        <h5>Project Name</h5>
-
-                        <div>
-                            <img class="test-popup-link"  src="{{ asset('web-assets') }}/images/photos/project-layout.png" alt="image">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 pb-4">
-                    <div class="pro-layout-box">
-                        <h5>Project Name</h5>
-
-                        <div>
-                            <img class="test-popup-link" src="{{ asset('web-assets') }}/images/photos/project-layout.png" alt="image">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 pb-4">
-                    <div class="pro-layout-box">
-                        <h5>Project Name</h5>
-
-                        <div>
-                            <img class="test-popup-link"  src="{{ asset('web-assets') }}/images/photos/project-layout.png" alt="image">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 pb-4">
-                    <div class="pro-layout-box">
-                        <h5>Project Name</h5>
-
-                        <div>
-                            <img class="test-popup-link"  src="{{ asset('web-assets') }}/images/photos/project-layout.png" alt="image">
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -306,40 +209,18 @@
                 <h3 class="after">CERTIFICATIONS</h3>
             </div>
             <div class="row mt-5">
+                @foreach ($certificates as $certificate)
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 pb-4">
                     <div class="certificate-box">
-                        <img src="{{ asset('web-assets') }}/images/photos/certificate.png" alt="certificate">
-
-                        <h5>Certificate Name</h5>
+                        <img src="{{ $certificate->urlOf('image') }}" alt="certificate">
+                        <h5>{{ $certificate->name }}</h5>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 pb-4">
-                    <div class="certificate-box">
-                        <img src="{{ asset('web-assets') }}/images/photos/certificate.png" alt="certificate">
-
-                        <h5>Certificate Name</h5>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 pb-4">
-                    <div class="certificate-box">
-                        <img src="{{ asset('web-assets') }}/images/photos/certificate.png" alt="certificate">
-
-                        <h5>Certificate Name</h5>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 pb-4">
-                    <div class="certificate-box">
-                        <img src="{{ asset('web-assets') }}/images/photos/certificate.png" alt="certificate">
-
-                        <h5>Certificate Name</h5>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
     <!--    CERTIFICATE SECTION END-->
-
-
 
 
 @endsection

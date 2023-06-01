@@ -1,5 +1,5 @@
 @extends('layouts.app', ['title' => 'Project List'])
-
+@section('title','Project List')
 @section('content')
     <div class="container">
         <!--breadcrumb-->
@@ -9,7 +9,7 @@
             </div>
             <div class="ms-auto">
                 <a href="{{ route('admin.project.create') }}" type="button" class="btn btn-primary btn-sm"> <i
-                        class="bi bi-plus-circle"></i> Create News</a>
+                        class="bi bi-plus-circle"></i> Add New Project</a>
             </div>
         </div>
         <!--breadcrumb-->
@@ -22,23 +22,19 @@
                                 <th>#</th>
                                 <th>Title</th>
                                 <th>Image</th>
+                                <th>Layout</th>
                                 <th>Project Type</th>
-                                <th>Budget</th>
-                                <th> Year </th>
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>0
+                        <tbody>
                             @foreach ($projects as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->title }}</td>
                                     <td><img src="{{ $item->urlOf('image') }}" width="100"></td>
-                                    </td>
-
-                                    <td>{{ $item->project_type ? $item->project_type->name : '' }}</td>
-                                    <td>{{ $item->budget }}</td>
-                                    <td>{{ $item->year ? $item->year->name : '' }}</td>
+                                    <td><img src="{{ $item->urlOf('layout') }}" width="100"></td>
+                                    <td>{{  optional($item->projecttype)->name  }}</td>
                                     <td>
                                         <div class="table-actions d-flex align-items-center gap-3 fs-6">
                                             <a href="{{ route('admin.project.show',$item->id) }}" class="text-primary"

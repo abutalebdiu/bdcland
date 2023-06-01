@@ -45,6 +45,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=> ['auth','admi
     Route::resource('gallery', App\Http\Controllers\Admin\GalleryController::class);
     Route::resource('projecttype', App\Http\Controllers\Admin\ProjectTypeController::class);
     Route::resource('project', App\Http\Controllers\Admin\ProjectController::class);
+    Route::resource('certificate', App\Http\Controllers\Admin\CertificateController::class);
     Route::resource('socialmedia', App\Http\Controllers\Admin\SocialMediaController::class);
     Route::resource('subscribers', App\Http\Controllers\Admin\SubscriberController::class);
     // End Website

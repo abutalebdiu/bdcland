@@ -1,15 +1,15 @@
-@extends('layouts.app', ['title' => 'Project List'])
-
+@extends('layouts.app')
+@section('title','Project Type List')
 @section('content')
     <div class="container">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-flex align-items-center mb-2 border-bottom pb-2">
             <div>
-                <h6 class="m-0">Project List</h6>
+                <h6 class="m-0">Project Type List</h6>
             </div>
             <div class="ms-auto">
                 <a href="{{ route('admin.projecttype.create') }}" type="button" class="btn btn-primary btn-sm"> <i
-                        class="bi bi-plus-circle"></i> Create Project</a>
+                        class="bi bi-plus-circle"></i> Create Project Type</a>
             </div>
         </div>
         <!--breadcrumb-->
@@ -22,6 +22,7 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Name Bangla</th>
+                                <th>Main</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -32,9 +33,10 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->name_bn }}</td>
+                                    <td> {{ optional($item->maintype)->name }}</td>
                                     <td>
                                         @if($item->status == 'active')
-                                        <span class="badge bg-success">{{ $item->status }}</span> 
+                                        <span class="badge bg-success">{{ $item->status }}</span>
                                        @elseif($item->status == 'deactive')
                                             <span class="badge bg-danger">{{ $item->status }}</span>
                                         @endif

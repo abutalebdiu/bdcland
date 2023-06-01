@@ -17,7 +17,7 @@ class ProjectTypeController extends Controller
      */
     public function index()
     {
-        $data['projecttypes'] = ProjectType::all();
+        $data['projecttypes'] = ProjectType::where('p_id','0')->orWhereNull('p_id')->get();
         return view('admin.projecttypes.index',$data);
     }
 
@@ -28,7 +28,8 @@ class ProjectTypeController extends Controller
      */
     public function create()
     {
-        return view('admin.projecttypes.create');
+        $data['projecttypes'] = ProjectType::where('p_id','0')->orWhereNull('p_id')->get();
+        return view('admin.projecttypes.create',$data);
     }
 
     /**
@@ -43,6 +44,7 @@ class ProjectTypeController extends Controller
             'name' => 'required',
             'name_bn' => 'required',
         ]);
+
         $type = ProjectType::create($request->except(['_token']));
 
         Notify::success('Project Type Create Successfully');
@@ -57,7 +59,7 @@ class ProjectTypeController extends Controller
      */
     public function show(ProjectType $projectType)
     {
-        
+
     }
 
     /**

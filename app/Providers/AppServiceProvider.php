@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer("*", function ($view){
-            $data = ProjectType::get();
+            $data = ProjectType::WhereNull('p_id')->get();
             $view->with("projecttypes",$data);
         });
     }

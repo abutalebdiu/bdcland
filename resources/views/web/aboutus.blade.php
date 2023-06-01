@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.webapp')
 @push('meta_tags')
      @if(app()->getLocale() == "en") @section('title', 'About Us')   @else  @section('title', 'আমাদের সম্পর্কে') @endif
     <link rel="canonical" href="{{ URL::current() }}" />

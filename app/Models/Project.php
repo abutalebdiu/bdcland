@@ -10,25 +10,21 @@ class Project extends Model
 {
     use HasFactory,HasUploader;
 
-    protected $fillable = [
-        'project_type_id',
+    protected $fillable  = [
         'title',
-        'description',
+        'project_type_id',
         'image',
-        'tax_year_id',
-        'budget',
-        'status',
-    ];
+        'layout',
+        'mapcode',
+        'youtube',
+        'short_description',
+        'long_description',
+        'status'
+   ];
 
-
-    public function project_type()
+   public function projecttype()
     {
-        return $this->belongsTo(ProjectType::class, 'project_type_id');
+        return $this->belongsTo(ProjectType::class,'project_type_id');
     }
-    public function year()
-    {
-        return $this->belongsTo(TaxYear::class, 'tax_year_id');
-    }
-
 
 }

@@ -12,9 +12,10 @@ class ProjectType extends Model
     use HasFactory,Sluggable;
 
     protected $fillable  = [
-         'slug',
+         'p_id',
          'name',
          'name_bn',
+         'slug',
          'status'
     ];
 
@@ -27,5 +28,14 @@ class ProjectType extends Model
             ]
         ];
     }
-    
+
+    public function maintype()
+    {
+        return $this->belongsTo(ProjectType::class,'p_id','id');
+    }
+
+    public function subcategories()
+    {
+        return $this->hasMany(ProjectType::class,'p_id','id');
+    }
 }
