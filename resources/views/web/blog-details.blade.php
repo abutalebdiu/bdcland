@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.webapp')
 @section('title', 'Blog Details')
 @push('meta_tags')
     <link rel="canonical" href="{{ URL::current() }}" />
@@ -27,7 +27,7 @@
     <section class="blog-section py-5" style="background: none;">
         <div class="container">
             <div class="section-title text-center">
-                <h2 class="after">News & Media Details</h2>
+                <h2 class="after">{{$blog->title}}</h2>
             </div>
             <div class="row">
                 <div class="col-12 col-lg-8">
@@ -48,15 +48,7 @@
 
                         <div class="posted-blog d-sm-flex py-3 align-items-center">
                             <div>
-                                <span>Posted by Admin</span>
-                                <a href="#">
-                                    <img src="{{asset('web-assets')}}/images/icons/like.png" alt="">
-                                </a>
-                                <span>245</span>
-                                <a href="#">
-                                    <img src="{{asset(asset('web-assets'))}}/images/icons/comment.png" alt="">
-                                </a>
-                                <span>245</span>
+                                <span>Posted by Admin</span>|
                             </div>
                             <div class="social-icons mt-4 mt-sm-0">
                                 <span>Share :</span>

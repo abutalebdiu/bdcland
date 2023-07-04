@@ -40,6 +40,15 @@ class WebController extends Controller
         $data['blogs'] = Blog::latest()->get();
         return view('web.blogs',$data);
     }
+    
+    public function blogsdetail($id)
+    {
+        $data['blog'] = Blog::where('id',$id)->first();
+         $data['recent_blogs'] = Blog::latest()->get();
+        return view('web.blog-details',$data);
+    }
+    
+    
 
     public function aboutus()
     {

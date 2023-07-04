@@ -20,6 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!--    FONT AWSOME-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+    {{-- <link rel="stylesheet" href="{{ asset('web-assets/css/propertryslider.css') }}"> --}}
     <!--    SLICK SLIDER-->
     <link rel="stylesheet" href="{{ asset('web-assets/css/slick-theme.css') }}">
     <link rel="stylesheet" href="{{ asset('web-assets/css/slick.css') }}">
@@ -29,6 +30,36 @@
 </head>
 <body>
 
+    <!-- Messenger Chat Plugin Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Chat Plugin code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "109962938498560");
+      chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v17.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
 
     <!--    HEADER SECTION-->
     <header class="header-section py-xl-2 d-flex align-items-center">
@@ -78,8 +109,6 @@
                                 </li>
 
                                 <li><a href="{{ route('web.booking') }}">BOOKING</a></li>
-                                <li><a href="#">NEWS & EVENTS</a></li>
-                                <li><a href="#">PAYMENTS</a></li>
                                 <li><a href="{{ route('aboutus') }}">ABOUT US</a></li>
                                 <li><a href="{{ route('blogs') }}">BLOG</a></li>
                                 <li class="menu-phone"><a href="#">{{ $setting->phone }}</a></li>
@@ -232,7 +261,7 @@
         <span>Share</span>
         <div class="social-box-social">
             <div>
-                <a href="#" target="_blank">
+                <a href="https://www.facebook.com/BangladeshDevelopmentCompany/" target="_blank">
                     <i class="fa fa-facebook" aria-hidden="true"></i>
 
                 </a>
@@ -253,7 +282,7 @@
                 </a>
             </div>
             <div>
-                <a href="#" target="_blank">
+                <a href="https://www.youtube.com/@bangladeshdevelopmentcompa982" target="_blank">
                     <i class="fa fa-youtube-play" aria-hidden="true"></i>
                 </a>
             </div>
@@ -414,6 +443,10 @@
     <!--    slick slider-->
     <script src="{{ asset('web-assets/js/main.js') }}"></script>
     <script src="{{ asset('web-assets/js/slick.min.js') }}"></script>
+
+    {{-- <script src="{{ asset('web-assets/js/prefixfree.min.js') }}"></script>
+    <script src="{{ asset('web-assets/js/zoom-slideshow.js') }}"></script> --}}
+
     <!--    Magnific popup-->
     <script src="{{ asset('web-assets/js/jquery.magnific-popup.min.js') }}"></script>
 
@@ -447,6 +480,17 @@
 
     </script>
 
+    {{-- <script>
+        $(document).ready(function() {
+            $('#view').setZoomPicture({
+                thumbsContainer: '#pics-thumbs',
+                prevContainer: '#nav-left-thumbs',
+                nextContainer: '#nav-right-thumbs',
+                zoomContainer: '#zoom',
+                zoomLevel: 2,
+            });
+        });
+    </script> --}}
 
 </body>
 

@@ -13,7 +13,7 @@ class Project extends Model
     protected $fillable  = [
         'title',
         'project_type_id',
-        'image',
+        'images',
         'layout',
         'mapcode',
         'youtube',
@@ -22,9 +22,22 @@ class Project extends Model
         'status'
    ];
 
-   public function projecttype()
+    protected $casts = [
+        'images' => 'array',
+    ];
+
+
+    public function projecttype()
     {
         return $this->belongsTo(ProjectType::class,'project_type_id');
     }
+
+
+    public function getImageAttribute($value)
+    {
+        if (isset($this->images[0])) return $this->images[0];
+        return null;
+    }
+
 
 }

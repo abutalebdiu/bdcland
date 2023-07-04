@@ -46,11 +46,17 @@ class ProjectController extends Controller
             'title' => 'required',
             'project_type_id' => 'required'
         ]);
-        $project = Project::create($request->except(['image','layout']));
-        if($request->has('image'))
-        {
-            $project->uploadRequestFile('image')->saveInto('image');
+        $project = Project::create($request->except(['images','layout']));
+
+        // if($request->has('image'))
+        // {
+        //     $project->uploadRequestFile('image')->saveInto('image');
+        // }
+
+        if ($request->has('images')) {
+            $project->uploadRequestFiles('images')->saveInto('images', true);
         }
+
         if($request->has('layout'))
         {
             $project->uploadRequestFile('layout')->saveInto('layout');
@@ -96,20 +102,22 @@ class ProjectController extends Controller
             'project_type_id' => 'required'
         ]);
 
-        if($request->has('image'))
+        if($request->has('images'))
         {
-            $project->deleteWithFile('image');
+            $project->deleteWithFile('images');
         }
+
         if($request->has('layout'))
         {
             $project->deleteWithFile('layout');
         }
 
-        $project->update($request->except(['image']));
+        $project->update($request->except(['images']));
 
-        if($request->has('image')){
-            $project->uploadRequestFile('image')->saveInto('image');
+        if ($request->has('images')) {
+            $project->uploadRequestFiles('images')->saveInto('images', true);
         }
+
         if($request->has('layout')){
             $project->uploadRequestFile('layout')->saveInto('layout');
         }

@@ -30,55 +30,63 @@
     <section class="query-section py-5">
         <div class="container">
             <div class="section-title text-center">
-                <h3 class="after">GET IN TOUCH</h3>
+                <h3 class="after">Booking</h3>
             </div>
 
             <div class="mt-5">
                 <div class="row align-items-center">
                     <div class="col-12 col-md-6">
-                        <div class="">
-                            <form action="{{ route('bookingstore') }}" method="post">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Submit your data for more information</h4>
+                                <form action="{{ route('bookingstore') }}" method="post">
                                 @csrf
 
-                                <div class="py-2">
-                                    <label for="">Your Name</label>
-                                    <input type="text" name="name"  value="{{ old('name') }}" class="form-control"  placeholder="">
-                                </div>
-                                <div class="py-2">
-                                    <label for="">Company Name</label>
-                                    <input type="text" name="companyname"  value="{{ old('companyname') }}" class="form-control"  placeholder="">
-                                </div>
-                                <div class="py-2">
-                                    <label for="">Designation</label>
-                                    <input type="text" name="designation"  value="{{ old('designation') }}" class="form-control"  placeholder="">
-                                </div>
-                                <div class="py-2">
-                                    <label for="">Mobile Number</label>
-                                    <input type="text" name="phone" value="{{ old('phone') }}" class="form-control" placeholder="">
-                                </div>
-                                <div class="py-2">
-                                    <label for="">Email</label>
-                                    <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="">
-                                </div>
-                                <div class="py-2">
-                                    <label for="">Address</label>
-                                    <input type="text" name="address" value="{{ old('address') }}" class="form-control" placeholder="">
-                                </div>
-                                <div class="py-2">
-                                    <label for="">Comment</label>
-                                    <textarea name="comments" id="comments" rows="5" class="form-control" placeholder="message">{{ old('comments') }}</textarea>
-                                </div>
-                                <div class="mt-4 text-center">
-                                    <button type="submit" class="see-all">SUBMIT</button>
-                                </div>
-                            </form>
+                                    <div class="py-2">
+                                        <label for="">Your Name</label>
+                                        <input type="text" name="name"  value="{{ old('name') }}" class="form-control"  placeholder="">
+                                    </div>
+                                    <div class="py-2">
+                                        <label for="">Company Name</label>
+                                        <input type="text" name="companyname"  value="{{ old('companyname') }}" class="form-control"  placeholder="">
+                                    </div>
+                                    <div class="py-2">
+                                        <label for="">Designation</label>
+                                        <input type="text" name="designation"  value="{{ old('designation') }}" class="form-control"  placeholder="">
+                                    </div>
+                                    <div class="py-2">
+                                        <label for="">Mobile Number</label>
+                                        <input type="text" name="phone" value="{{ old('phone') }}" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="py-2">
+                                        <label for="">Email</label>
+                                        <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="py-2">
+                                        <label for="">Address</label>
+                                        <input type="text" name="address" value="{{ old('address') }}" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="py-2">
+                                        <label for="">Comment</label>
+                                        <textarea name="comments" id="comments" rows="5" class="form-control" placeholder="message">{{ old('comments') }}</textarea>
+                                    </div>
+                                    <div class="mt-4 text-center">
+                                        <button type="submit" class="see-all">SUBMIT</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 mt-4 mt-md-0">
-                        <div class="query-right">
-                            <img src="{{ asset('web-assets') }}/images/photos/query.png" alt="query">
-                            <h3>01322-910430</h3>
-                        </div>
+                        <div class="support-box">
+                             <div class="card">
+                                 <div class="card-body">
+                                     <h4 class="card-title">Sales Agent</h4>
+                                     <p>Phone Number :      <i class="bi bi-telephone"></i> 01322-910430 </p>
+                                     <p>Whatsapp Number :   <a href="https://wa.me/+8801322910431"> <i class="bi bi-whatsapp text-green"></i> Whatsapp Chat</a></p>
+                                 </div>
+                             </div>
+                         </div>
                     </div>
                 </div>
             </div>

@@ -40,10 +40,10 @@
 
                     <div class="col-12 col-md-6 py-2">
                         <div class="form-group">
-                            <label for="Title">Image</label> <br>
-                            <img src="{{ $project->urlof('image') }}" alt="" class="w-25"> <br>
-                            <input type="file" name="image" class="form-control" accept=".jpg,.jpeg,.png,.PNG,.gif">
-                            <span class="text-danger">{{ $errors->first('image') }}</span>
+                            <label for="images">Image</label> <br>
+                            <img src="{{ $project->urlof('images') }}" alt="" class="w-25"> <br>
+                            <input type="file" name="images[]" class="form-control" accept=".jpg,.jpeg,.png,.PNG,.gif" multiple>
+                            <span class="text-danger">{{ $errors->first('images') }}</span>
                         </div>
                     </div>
 

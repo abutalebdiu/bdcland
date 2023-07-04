@@ -39,9 +39,9 @@
 
                     <div class="col-12 col-md-6 py-2">
                         <div class="form-group">
-                            <label for="image">Image</label>
-                            <input type="file" name="image" class="form-control" accept=".jpg,.jpeg,.png,.PNG,.gif">
-                            <span class="text-danger">{{ $errors->first('image') }}</span>
+                            <label for="images">Image</label>
+                            <input type="file" name="images[]" class="form-control" accept=".jpg,.jpeg,.png,.PNG,.gif" multiple>
+                            <span class="text-danger">{{ $errors->first('images') }}</span>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 py-2">
