@@ -15,6 +15,7 @@ class Project extends Model
         'project_type_id',
         'images',
         'layout',
+        'address',
         'mapcode',
         'youtube',
         'short_description',

@@ -66,6 +66,13 @@
                             <span class="text-danger">{{ $errors->first('long_description') }}</span>
                         </div>
                     </div>
+                    <div class="col-sm-12 py-2">
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea name="address" rows="2" class="form-control"></textarea>
+                            <span class="text-danger">{{ $errors->first('address') }}</span>
+                        </div>
+                    </div>
 
                     <div class="col-12 col-md-6 py-2">
                         <div class="form-group">

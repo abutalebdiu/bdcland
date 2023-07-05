@@ -44,7 +44,7 @@
                 <div class="bg-white">
                     <div class="slider-video">
                         <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-                            <source src="{{ asset('web-assets') }}/images/slider/video_slider.mp4" type="video/mp4">
+                            <source src="{{ asset('web-assets') }}/images/slider/Website Video 1920x500.mp4" type="video/mp4">
                         </video>
                     </div>
                 </div>
@@ -163,6 +163,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Sales Agent</h4>
+                                <img src="{{ asset('web-assets/images/photos/Customer Care.gif') }}" alt=""
+                                class="img-fluid">
                                 <p>Phone Number : <i class="bi bi-telephone"></i> 01322-910430 </p>
                                 <p>Whatsapp Number : <a href="https://wa.me/+8801322910431"> <i
                                             class="bi bi-whatsapp text-green"></i> Whatsapp Chat</a></p>

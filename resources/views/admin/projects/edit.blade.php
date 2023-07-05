@@ -41,7 +41,7 @@
                     <div class="col-12 col-md-6 py-2">
                         <div class="form-group">
                             <label for="images">Image</label> <br>
-                            <img src="{{ $project->urlof('images') }}" alt="" class="w-25"> <br>
+                            <img src="{{ $project->urlof('image') }}" alt="" class="w-25"> <br>
                             <input type="file" name="images[]" class="form-control" accept=".jpg,.jpeg,.png,.PNG,.gif" multiple>
                             <span class="text-danger">{{ $errors->first('images') }}</span>
                         </div>
@@ -68,6 +68,13 @@
                             <label for="long_description">Long Description</label>
                             <textarea name="long_description" rows="6" class="form-control summernote">{{ $project->long_description }}</textarea>
                             <span class="text-danger">{{ $errors->first('long_description') }}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 py-2">
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea name="address" rows="2" class="form-control">{{ $project->address }}</textarea>
+                            <span class="text-danger">{{ $errors->first('address') }}</span>
                         </div>
                     </div>
 

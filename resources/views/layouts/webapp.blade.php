@@ -20,7 +20,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!--    FONT AWSOME-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
-    {{-- <link rel="stylesheet" href="{{ asset('web-assets/css/propertryslider.css') }}"> --}}
+
+    @stack('style')
     <!--    SLICK SLIDER-->
     <link rel="stylesheet" href="{{ asset('web-assets/css/slick-theme.css') }}">
     <link rel="stylesheet" href="{{ asset('web-assets/css/slick.css') }}">
@@ -444,8 +445,6 @@
     <script src="{{ asset('web-assets/js/main.js') }}"></script>
     <script src="{{ asset('web-assets/js/slick.min.js') }}"></script>
 
-    {{-- <script src="{{ asset('web-assets/js/prefixfree.min.js') }}"></script>
-    <script src="{{ asset('web-assets/js/zoom-slideshow.js') }}"></script> --}}
 
     <!--    Magnific popup-->
     <script src="{{ asset('web-assets/js/jquery.magnific-popup.min.js') }}"></script>
@@ -480,17 +479,7 @@
 
     </script>
 
-    {{-- <script>
-        $(document).ready(function() {
-            $('#view').setZoomPicture({
-                thumbsContainer: '#pics-thumbs',
-                prevContainer: '#nav-left-thumbs',
-                nextContainer: '#nav-right-thumbs',
-                zoomContainer: '#zoom',
-                zoomLevel: 2,
-            });
-        });
-    </script> --}}
+    @stack('js')
 
 </body>
 

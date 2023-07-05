@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('project_type_id');
             $table->string('image')->nullable();
             $table->string('layout')->nullable();
+            $table->text('address')->nullable();
             $table->text('mapcode')->nullable();
             $table->text('youtube')->nullable();
             $table->text('short_description')->nullable();
